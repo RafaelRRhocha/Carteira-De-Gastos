@@ -1,10 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { createActionWallet } from '../actions';
+import FormWalletPage from '../components/FormWalletPage';
 
 class Wallet extends React.Component {
+  componentDidMount() {
+    this.fetchAPI();
+  }
+
+  fetchAPI = async () => {
+    const { requestApiDis, expenses, editor, idToEdit } = this.props;
+    const api = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const dataApi = Object.keys(await api.json()).filter((e) => e !== 'USDT');
+    const obj = {
+      currencies: dataApi,
+      expenses,
+      editor,
+      idToEdit,
+    };
+    requestApiDis(obj);
+  };
+
   render() {
-    const { email, currencies } = this.props;
+    const { email } = this.props;
     return (
       <div>
         <header>
@@ -12,34 +31,7 @@ class Wallet extends React.Component {
           <p data-testid="total-field">0</p>
           <p data-testid="header-currency-field">BRL</p>
         </header>
-        <form>
-          <input data-testid="value-input" placeholder="despesa" type="text" />
-          <input
-            data-testid="description-input"
-            placeholder="descrição"
-            type="text"
-          />
-          <label htmlFor="moeda">
-            Moeda
-            <select
-              id="moeda"
-            >
-              {currencies.map((element, i) => (<option key={ i }>{element}</option>))}
-            </select>
-          </label>
-          <select data-testid="method-input">
-            <option>Dinheiro</option>
-            <option>Cartão de crédito</option>
-            <option>Cartão de débito</option>
-          </select>
-          <select data-testid="tag-input">
-            <option>Alimentação</option>
-            <option>Lazer</option>
-            <option>Trabalho</option>
-            <option>Transporte</option>
-            <option>Saúde</option>
-          </select>
-        </form>
+        <FormWalletPage />
       </div>
     );
   }
@@ -47,12 +39,22 @@ class Wallet extends React.Component {
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
-  currencies: PropTypes.arrayOf.isRequired,
+  requestApiDis: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf.isRequired,
+  editor: PropTypes.bool.isRequired,
+  idToEdit: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
+  editor: state.wallet.editor,
+  idToEdit: state.wallet.idToEdit,
 });
 
-export default connect(mapStateToProps, null)(Wallet);
+const mapDispatchToProps = (dispatch) => ({
+  requestApiDis: (api) => dispatch(createActionWallet(api)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
