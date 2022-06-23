@@ -11,7 +11,7 @@ class Login extends React.Component {
     currencies: [],
   };
 
-  componentDidUpdate() {
+  shouldComponentUpdate() {
     this.filterCurrencies();
   }
 
@@ -54,7 +54,6 @@ class Login extends React.Component {
     };
     dispatchLogin(obj);
     requestApiDis(obj);
-    this.filterCurrencies();
     history.push('/carteira');
   };
 
