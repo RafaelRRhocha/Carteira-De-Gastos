@@ -1,0 +1,339 @@
+/* stylelint-disable linebreaks */
+
+/* .table {
+  align-items: center;
+  color: #fff;
+  font-size: medium;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.table tr:nth-child( 2n ) {
+  background-color: #2eb34b;
+  color: #000;
+  padding: 10px;
+}
+
+.table tr:nth-child( odd ) {
+  background-color: #222;
+  color: #fff;
+  padding: 10px;
+}
+
+.table th {
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+}
+
+.table button {
+  background: none;
+  border: 5px #000;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 10px;
+  padding: 3px 8px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-out;
+  transition-property: background-color, color;
+}
+
+.table tr:nth-child( 2n ) button {
+  color: #000;
+}
+
+.table tr:nth-child( odd ) button {
+  color: #fff;
+}
+
+.table .button-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.wallet-main-container {
+  background: linear-gradient(120deg, #1e8634, #0a520b);
+  height: 100vh;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+.header {
+  background-color: #383838;
+  color: #fff;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.header , .title-container {
+  align-items: center;
+  display: flex;
+}
+
+.title-container {
+  text-transform: uppercase;
+}
+
+.header-title > span {
+  color: #20af3f;
+}
+
+.header .wallet {
+  margin-left: 50px;
+  margin-right: 20px;
+  width: 50px;
+}
+
+.header .exit-button {
+  align-items: center;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: x-large;
+  margin-left: 10px;
+}
+
+.wallet-container {
+  display: flex;
+  font-size: large;
+  justify-content: space-around;
+  margin-right: 50px;
+  padding: 10px;
+}
+
+.wallet-container .wallet-email {
+  align-items: center;
+  display: flex;
+  margin-right: 20px;
+}
+
+.wallet-container .wallet-email .user-email {
+  margin-left: 10px;
+}
+
+.wallet-container .wallet-funds {
+  align-items: center;
+  display: flex;
+}
+
+.wallet-container .wallet-funds .user-funds {
+  margin-left: 10px;
+}
+
+.wallet-container .wallet-funds .funds-icon {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.logout p , .logout span {
+  margin-bottom: 5px;
+}
+
+.form {
+  align-items: center;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.form .row {
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.form .clean , .form .row span {
+  display: inline-block;
+  position: relative;
+}
+
+.form .clean {
+  background: #efefef;
+  border: 0;
+  border-radius: 3px;
+  color: #000;
+  font-weight: 400;
+  outline: 0;
+  padding: 10px 0 10px 15px;
+  text-indent: 60px;
+  transition: all 0.3s ease-in-out;
+  width: 190px;
+}
+
+.form .clean::-moz-input-placeholder {
+  color: #efefef;
+  font-weight: 300;
+  padding-left: 5px;
+  text-indent: 0;
+}
+
+.form .clean + label {
+  color: #28ac49;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  left: 0;
+  overflow: hidden;
+  padding: 13px 15px;
+  text-align: left;
+  text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.4);
+  text-transform: uppercase;
+  top: -3px;
+  transform: translateX(0);
+  transition: all 0.3s ease-in-out, color 0.3s ease-out;
+}
+
+.form .clean + label , .form .clean + label:after {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  bottom: 0;
+  position: absolute;
+}
+
+.form .clean + label:after {
+  background: #7ab893;
+  content: '';
+  right: 100%;
+  top: 3px;
+  transform: translate(0);
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  z-index: -1;
+}
+
+.form .clean:active , .form .clean:focus {
+  background: #fff;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: #377d6a;
+  text-indent: 0;
+}
+
+.form .clean:active::-moz-input-placeholder , .form .clean:focus::-moz-input-placeholder {
+  color: #000;
+}
+
+.form .clean:active + label , .form .clean:focus + label {
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+  transform: translateX(-100%);
+}
+
+.form .clean:active + label:after , .form .clean:focus + label:after {
+  transform: translate(100%);
+}
+
+.form button {
+  background-color: #1f8d37;
+  border: 5px #000;
+  color: #000;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 10px;
+  padding: 13px 15px;
+  transition: all 0.5s ease-out;
+  transition-property: background-color, color;
+}
+
+.form select {
+  color: #377d6a;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 8px 10px;
+}
+
+.form .select-currency , .form .select-method , .form .select-tag {
+  color: #20af3f;
+  position: relative;
+  text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.5);
+  text-transform: uppercase;
+}
+
+.wallet-main-container-logout {
+  background: linear-gradient(120deg, #1e8634, #0a520b);
+  height: 100vh;
+  width: 100vw;
+}
+
+.logout , .wallet-main-container-logout {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.logout {
+  background-color: #fff;
+  color: #20af3f;
+  flex-direction: column;
+  font-size: xx-large;
+  min-height: 10vh;
+  min-width: 30vw;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  transition: box-shadow 1s ease-out;
+}
+
+.App {
+  align-items: center;
+  background: linear-gradient(120deg, #1e8634, #0a520b);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media ( prefers-reduced-motion : no-preference ) {
+
+  .App-logo {
+    animation: App-logo-spin 20s linear infinite;
+    animation: App-logo-spin 20s linear infinite;
+  }
+}
+
+.App-header {
+  align-items: center;
+  background-color: #282c34;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes App-logo-spin {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+} */

@@ -33,6 +33,7 @@ class FormWalletPage extends React.Component {
           <option>Transporte</option>
           <option>Saúde</option>
         </select>
+        <button type="button">Adicionar Despesas</button>
       </form>
     );
   }

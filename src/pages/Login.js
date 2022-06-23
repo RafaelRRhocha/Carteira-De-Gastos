@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createActionEmail } from '../actions';
+import wallet from '../assets/wallet.png';
+import '../css/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -33,30 +35,41 @@ class Login extends React.Component {
     const { email, password, disable } = this.state;
     const n5 = 5;
     return (
-      <form>
-        <input
-          type="email"
-          placeholder="Digite o Seu Email"
-          data-testid="email-input"
-          onChange={ this.verifyInputEmail }
-          value={ email }
-        />
-        <input
-          type="password"
-          minLength={ 6 }
-          placeholder="Digite a Sua Senha"
-          data-testid="password-input"
-          onChange={ this.verifyInputPassword }
-          value={ password }
-        />
-        <button
-          type="submit"
-          onClick={ this.sendState }
-          disabled={ !disable || password.length <= n5 }
-        >
-          Entrar
-        </button>
-      </form>
+      <div className="lgn-container">
+        <form className="lgn">
+          <img src={ wallet } alt="imagem da carteira" className="wallet" />
+          <div className="email-container">
+            <input
+              type="email"
+              placeholder="Digite o Seu Email"
+              data-testid="email-input"
+              onChange={ this.verifyInputEmail }
+              value={ email }
+              className="clean"
+              name="email"
+              autoComplete="off"
+            />
+          </div>
+          <div className="password-container">
+            <input
+              type="password"
+              placeholder="Digite a Sua Senha"
+              minLength={ 6 }
+              data-testid="password-input"
+              onChange={ this.verifyInputPassword }
+              value={ password }
+              className="clean"
+            />
+          </div>
+          <button
+            type="submit"
+            onClick={ this.sendState }
+            disabled={ !disable || password.length <= n5 }
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
     );
   }
 }
