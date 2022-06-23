@@ -2,7 +2,7 @@
 
 // Esse reducer será responsável por tratar as informações da pessoa usuária
 
-import { WALLET } from '../actions/actionTypes';
+import { WALLET, REMOVE_WALLET } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -20,6 +20,12 @@ const wallet = (state = INITIAL_STATE, action) => {
       expenses: action.payload.expenses,
       editor: action.payload.editor,
       idToEdit: action.payload.idToEdit,
+    };
+
+  case REMOVE_WALLET:
+    return {
+      ...state,
+      expenses: state.expenses.filter((e) => e.id !== action.id),
     };
   default:
     return state;

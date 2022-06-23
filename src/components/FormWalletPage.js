@@ -102,8 +102,8 @@ class FormWalletPage extends React.Component {
 }
 
 FormWalletPage.propTypes = {
-  currencies: PropTypes.arrayOf.isRequired,
-  expenses: PropTypes.arrayOf.isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
   editor: PropTypes.bool.isRequired,
   idToEdit: PropTypes.number.isRequired,
   requestApiDis: PropTypes.func.isRequired,

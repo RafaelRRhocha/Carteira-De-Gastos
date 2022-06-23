@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { createRemoveWallet } from '../actions';
 
 class TableWallet extends React.Component {
   render() {
-    const { expenses } = this.props;
+    const { expenses, clearState } = this.props;
     return (
       <table>
         <thead>
@@ -21,21 +22,28 @@ class TableWallet extends React.Component {
           </tr>
           {expenses.map(
             (
-              { description, tag, method, value, exchangeRates, currency },
-              i,
+              { description, tag, method, value, exchangeRates, currency, id },
             ) => (
-              <tr key={ i }>
+              <tr key={ id }>
                 <td>{description}</td>
                 <td>{tag}</td>
                 <td>{method}</td>
                 <td>{Number(value).toFixed(2)}</td>
                 <td>{exchangeRates[currency].name.split('/')[0]}</td>
                 <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
-                <td>{Number(exchangeRates[currency].ask * value).toFixed(2)}</td>
+                <td>
+                  { Number(exchangeRates[currency].ask * value).toFixed(2) }
+                </td>
                 <td>Real</td>
                 <td>
                   <button type="button">Editar</button>
-                  <button type="button" data-testid="delete-btn">Excluir</button>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => clearState(id) }
+                  >
+                    Excluir
+                  </button>
                 </td>
               </tr>
             ),
@@ -47,11 +55,16 @@ class TableWallet extends React.Component {
 }
 
 TableWallet.propTypes = {
-  expenses: PropTypes.arrayOf.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
+  clearState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
-export default connect(mapStateToProps, null)(TableWallet);
+const mapDispatchToProps = (dispatch) => ({
+  clearState: (api) => dispatch(createRemoveWallet(api)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableWallet);

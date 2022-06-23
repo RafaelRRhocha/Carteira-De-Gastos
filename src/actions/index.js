@@ -1,6 +1,6 @@
 // Coloque aqui suas actions
 
-import { USER_EMAIL, WALLET } from './actionTypes';
+import { USER_EMAIL, WALLET, REMOVE_WALLET } from './actionTypes';
 
 export const createActionEmail = (value) => ({
   type: USER_EMAIL,
@@ -10,4 +10,9 @@ export const createActionEmail = (value) => ({
 export const createActionWallet = (value) => ({
   type: WALLET,
   payload: value,
+});
+
+export const createRemoveWallet = (id) => ({
+  type: REMOVE_WALLET,
+  id,
 });
