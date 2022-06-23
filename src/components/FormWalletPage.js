@@ -18,16 +18,10 @@ class FormWalletPage extends React.Component {
 
   fetchApiExpenses = async () => {
     const { requestApiDis, currencies, expenses, editor, idToEdit } = this.props;
-    const { value, description, currency, method, tag } = this.state;
     const api = await fetch('https://economia.awesomeapi.com.br/json/all');
     const dataApiExpenses = await api.json();
     this.setState({
       id: !expenses.length ? 0 : expenses.length,
-      value,
-      description,
-      currency,
-      method,
-      tag,
       exchangeRates: dataApiExpenses,
     });
     console.log(this.state);
