@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createActionWallet } from '../actions';
 import FormWalletPage from '../components/FormWalletPage';
+import TableWallet from '../components/TableWallet';
 
 class Wallet extends React.Component {
   componentDidMount() {
@@ -23,15 +24,30 @@ class Wallet extends React.Component {
   };
 
   render() {
-    const { email } = this.props;
+    const { email, expenses } = this.props;
     return (
       <div>
         <header>
           <p data-testid="email-field">{ email }</p>
-          <p data-testid="total-field">0</p>
+          <p data-testid="total-field">
+            {' '}
+            {!expenses
+              ? 0
+              : expenses.reduce((acc, curr) => {
+                acc += curr.exchangeRates[curr.currency].ask * curr.value;
+                return acc;
+              }, 0)
+                .toFixed([2])}
+
+          </p>
           <p data-testid="header-currency-field">BRL</p>
         </header>
-        <FormWalletPage />
+        <div>
+          <FormWalletPage />
+        </div>
+        <div>
+          <TableWallet />
+        </div>
       </div>
     );
   }
