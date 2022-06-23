@@ -30,7 +30,6 @@ class Wallet extends React.Component {
         <header>
           <p data-testid="email-field">{ email }</p>
           <p data-testid="total-field">
-            {' '}
             {!expenses
               ? 0
               : expenses.reduce((acc, curr) => {

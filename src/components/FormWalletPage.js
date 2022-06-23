@@ -38,6 +38,9 @@ class FormWalletPage extends React.Component {
       idToEdit,
     };
     requestApiDis(obj);
+    this.setState({
+      value: 0,
+    });
   };
 
   render() {
