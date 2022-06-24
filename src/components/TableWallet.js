@@ -49,6 +49,7 @@ class TableWallet extends React.Component {
                     size={ 20 }
                     data-testid="delete-btn"
                     onClick={ () => clearState(id) }
+                    className="x-circle"
                   />
                 </td>
               </tr>

@@ -44,14 +44,13 @@ class Wallet extends React.Component {
             <div className="wallet-funds">
               <Coins size={ 25 } className="funds-icon" />
               <p data-testid="total-field" className="user-funds">
-                {`R$: ${!expenses
+                {!expenses
                   ? 0
                   : expenses.reduce((acc, curr) => {
                     acc += curr.exchangeRates[curr.currency].ask * curr.value;
                     return acc;
                   }, 0)
-                    .toFixed([2])}`}
-
+                    .toFixed([2])}
               </p>
               <p data-testid="header-currency-field" className="title-container">BRL</p>
             </div>

@@ -185,3 +185,7 @@
   gap: 10;
   justify-content: center;
 }
+
+.x-circle:hover {
+  cursor: pointer;
+}

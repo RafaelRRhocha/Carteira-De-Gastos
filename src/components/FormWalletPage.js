@@ -56,7 +56,7 @@ class FormWalletPage extends React.Component {
           onChange={ this.handleChange }
           className="clean"
         />
-        <label htmlFor="currency">
+        <label htmlFor="moeda">
           Moeda:
           <select
             id="moeda"
@@ -69,22 +69,24 @@ class FormWalletPage extends React.Component {
             ))}
           </select>
         </label>
-        <label htmlFor="method">
+        <label htmlFor="methodo">
           Método de Pagamento:
           <select
+            id="methodo"
             data-testid="method-input"
             value={ method }
             name="method"
             onChange={ this.handleChange }
           >
-            <option value="dinheiro">Dinheiro</option>
+            <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
             <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
-        <label htmlFor="tag">
+        <label htmlFor="tags">
           Tag:
           <select
+            id="tags"
             data-testid="tag-input"
             value={ tag }
             name="tag"
