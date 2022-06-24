@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createActionWallet } from '../actions';
+import '../css/Wallet.css';
 
 class FormWalletPage extends React.Component {
   state = {
@@ -10,7 +11,7 @@ class FormWalletPage extends React.Component {
     description: '',
     currency: 'USD',
     method: 'Dinheiro',
-    tag: 'Alimentação',
+    tag: 'Alimentacão',
     exchangeRates: {},
   };
 
@@ -33,7 +34,11 @@ class FormWalletPage extends React.Component {
     };
     requestApiDis(obj);
     this.setState({
-      value: 0,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     });
   };
 
@@ -41,7 +46,7 @@ class FormWalletPage extends React.Component {
     const { currencies } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
-      <form>
+      <form className="form">
         <input
           data-testid="value-input"
           placeholder="valor a ser gasto"
@@ -49,17 +54,10 @@ class FormWalletPage extends React.Component {
           value={ value }
           name="value"
           onChange={ this.handleChange }
+          className="clean"
         />
-        <input
-          data-testid="description-input"
-          placeholder="digite a descrição da compra"
-          type="text"
-          value={ description }
-          name="description"
-          onChange={ this.handleChange }
-        />
-        <label htmlFor="moeda">
-          Moeda
+        <label htmlFor="currency">
+          Moeda:
           <select
             id="moeda"
             value={ currency }
@@ -71,28 +69,43 @@ class FormWalletPage extends React.Component {
             ))}
           </select>
         </label>
-        <select
-          data-testid="method-input"
-          value={ method }
-          name="method"
+        <label htmlFor="method">
+          Método de Pagamento:
+          <select
+            data-testid="method-input"
+            value={ method }
+            name="method"
+            onChange={ this.handleChange }
+          >
+            <option value="dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
+          </select>
+        </label>
+        <label htmlFor="tag">
+          Tag:
+          <select
+            data-testid="tag-input"
+            value={ tag }
+            name="tag"
+            onChange={ this.handleChange }
+          >
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
+          </select>
+        </label>
+        <input
+          data-testid="description-input"
+          placeholder="digite a descrição"
+          type="text"
+          value={ description }
+          name="description"
           onChange={ this.handleChange }
-        >
-          <option value="dinheiro">Dinheiro</option>
-          <option value="Cartão de crédito">Cartão de crédito</option>
-          <option value="Cartão de débito">Cartão de débito</option>
-        </select>
-        <select
-          data-testid="tag-input"
-          value={ tag }
-          name="tag"
-          onChange={ this.handleChange }
-        >
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Trabalho">Trabalho</option>
-          <option value="Transporte">Transporte</option>
-          <option value="Saúde">Saúde</option>
-        </select>
+          className="clean"
+        />
         <button type="button" onClick={ this.fetchApiExpenses }>
           Adicionar Despesas
         </button>
