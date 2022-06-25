@@ -50,7 +50,7 @@ class FormWalletPage extends React.Component {
         <input
           data-testid="value-input"
           placeholder="valor a ser gasto"
-          type="text"
+          type="number"
           value={ value }
           name="value"
           onChange={ this.handleChange }
