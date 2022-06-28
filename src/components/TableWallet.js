@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { XCircle } from 'phosphor-react';
-import { createRemoveWallet } from '../actions';
+import { XCircle, Pen } from 'phosphor-react';
+import { createRemoveWallet, createEditExpense } from '../actions';
 import '../css/Wallet.css';
 
 class TableWallet extends React.Component {
   render() {
-    const { expenses, clearState } = this.props;
+    const { expenses, clearState, editExpenses } = this.props;
     return (
       <table className="table">
         <thead>
@@ -44,7 +44,22 @@ class TableWallet extends React.Component {
                 </td>
                 <td>Real</td>
                 <td className="button-container">
-                  {/* <Pen size={ 20 } /> */}
+                  <Pen
+                    data-testid="edit-btn"
+                    size={ 20 }
+                    value="Editar Despesa"
+                    onClick={ () => editExpenses(id, {
+                      description,
+                      tag,
+                      method,
+                      value,
+                      exchangeRates,
+                      currency,
+                      id,
+                    }) }
+                    id={ id }
+                    className="x-circle"
+                  />
                   <XCircle
                     size={ 20 }
                     data-testid="delete-btn"
@@ -62,8 +77,9 @@ class TableWallet extends React.Component {
 }
 
 TableWallet.propTypes = {
-  expenses: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
   clearState: PropTypes.func.isRequired,
+  editExpenses: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -72,6 +88,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   clearState: (api) => dispatch(createRemoveWallet(api)),
+  editExpenses: (id, newExpense) => dispatch(createEditExpense(id, newExpense)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableWallet);

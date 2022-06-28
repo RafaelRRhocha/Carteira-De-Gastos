@@ -49,8 +49,7 @@ class Wallet extends React.Component {
                   : expenses.reduce((acc, curr) => {
                     acc += curr.exchangeRates[curr.currency].ask * curr.value;
                     return acc;
-                  }, 0)
-                    .toFixed([2])}
+                  }, 0).toFixed([2])}
               </p>
               <p data-testid="header-currency-field" className="title-container">BRL</p>
             </div>
